@@ -1,4 +1,4 @@
-//IntrodactioOOP
+п»ї//IntrodactioOOP
 #include <iostream>
 using namespace std;
 
@@ -8,11 +8,11 @@ class Point
 	double y;
 
 public:
-	double get_x() const //метод получения х
+	double get_x() const //РјРµС‚РѕРґ РїРѕР»СѓС‡РµРЅРёСЏ С…
 	{
 		return x;
 	}
-	double get_y() const //метод получения х
+	double get_y() const //РјРµС‚РѕРґ РїРѕР»СѓС‡РµРЅРёСЏ С…
 	{
 		return y;
 	}
@@ -35,10 +35,10 @@ void main()
 	
 #ifdef STRUCT_POINT
 	
-	int a;//Объявление переменной 'а' типа 'int'
-	Point A;// Объявление переменной 'А' типа 'Point'
-	        //Создание объекта 'А' структуры 'Point'
-	        // Создание экземпляра 'А' структуры 'Point'
+	int a;//РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ 'Р°' С‚РёРїР° 'int'
+	Point A;// РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ 'Рђ' С‚РёРїР° 'Point'
+	        //РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° 'Рђ' СЃС‚СЂСѓРєС‚СѓСЂС‹ 'Point'
+	        // РЎРѕР·РґР°РЅРёРµ СЌРєР·РµРјРїР»СЏСЂР° 'Рђ' СЃС‚СЂСѓРєС‚СѓСЂС‹ 'Point'
 	A.x = 2;
 	A.y = 3;
 	
@@ -46,7 +46,7 @@ void main()
 	Point* pA = &A;
 	cout << pA << endl;
 	cout << pA->x << "\t" << pA->y << endl;
-	cout << (*pA).x << "\t" << (*pA).y << endl; // тоже самое cout << pA->x << "\t" << pA->y << endl;
+	cout << (*pA).x << "\t" << (*pA).y << endl; // С‚РѕР¶Рµ СЃР°РјРѕРµ cout << pA->x << "\t" << pA->y << endl;
 	cout << sizeof(Point) << endl;
 #endif //STRUCT_POINT
 

@@ -1,4 +1,4 @@
-//homework 12.11.2022
+ï»¿//homework 12.11.2022
 #include <iostream>
 #include <math.h>
 using namespace std;
@@ -42,7 +42,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	double A_x, A_y;
-	cout << "Ââåäèòå êîîðäèíàòû òî÷êè, äî êîòîðîé íóíî íàéòè ðàññòîÿíèå: "; cin >> A_x; cin >> A_y;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ñ‚Ð¾Ñ‡ÐºÐ¸, Ð´Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð½ÑƒÐ½Ð¾ Ð½Ð°Ð¹Ñ‚Ð¸ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ: "; cin >> A_x; cin >> A_y;
 	Dist A;
 	A.set_x(A_x);
 	A.set_y(A_y);
@@ -50,11 +50,11 @@ void main()
 	A.set_dist(A.get_x(), A.get_y());
 	cout << A.get_dist() << endl;
 
-	cout << "\nÐàññòîÿíèå ìåæäó äâóìÿ òî÷êàìè: \n\n";
-	cout << "Ââåäèòå êîîðäèíàòû ïåðâîé òî÷êè: "; cin >> A_x; cin >> A_y;
+	cout << "\nÐ Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¼ÐµÐ¶Ð´Ñƒ Ð´Ð²ÑƒÐ¼Ñ Ñ‚Ð¾Ñ‡ÐºÐ°Ð¼Ð¸: \n\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐ¸: "; cin >> A_x; cin >> A_y;
 	double B_x, B_y;
-	cout << "Ââåäèòå êîîðäèíàòû âòîðîé òî÷êè: "; cin >> B_x; cin >> B_y;
-	cout << "\n\n Ðàññòîÿíèå ìåæäó òî÷êàìè ðàâíî: " << Distance(A_x, A_y, B_x, B_y)<<endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐ¸: "; cin >> B_x; cin >> B_y;
+	cout << "\n\n Ð Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¼ÐµÐ¶Ð´Ñƒ Ñ‚Ð¾Ñ‡ÐºÐ°Ð¼Ð¸ Ñ€Ð°Ð²Ð½Ð¾: " << Distance(A_x, A_y, B_x, B_y)<<endl;
 }
 
 double Distance(double x1, double y1, double x2, double y2)
