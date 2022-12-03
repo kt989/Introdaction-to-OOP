@@ -3,7 +3,7 @@
 #include <math.h>
 using namespace std;
 
-class Dist
+class Point
 {
 	double x;
 	double y;
@@ -30,38 +30,50 @@ public:
 	{
 		this->y = y;
 	}
-	void set_dist(double x, double y)
+
+	//Methods
+	double distance (Point other)
 	{
-		dist = sqrt(pow(x, 2) + pow(y, 2));
+		double x_distance = this->x - other.x;
+		double y_distance = this->y - other.y;
+		double distance = sqrt(pow(x_distance, 2) + pow(y_distance, 2));
+		return distance;
 	}
 };
 
-double Distance(double x1, double y1, double x2, double y2);
+double Distance(Point A, Point B)
+{
+	double x_distance = B.get_x() - A.get_x();
+	double y_distance = B.get_x() - A.get_y();
+	double distance = sqrt(pow(x_distance, 2) + pow(y_distance, 2));
+	return distance;
+}
 
 void main()
 {
 	setlocale(LC_ALL, "");
 	double A_x, A_y;
-	cout << "Введите координаты точки, до которой нуно найти расстояние: "; cin >> A_x; cin >> A_y;
-	Dist A;
+	cout << "Введите координаты первой точки: "; cin >> A_x; cin >> A_y;
+	Point A;
 	A.set_x(A_x);
 	A.set_y(A_y);
-	//cout << A.get_x() << "\t" << A.get_y()<<endl;
-	A.set_dist(A.get_x(), A.get_y());
-	cout << A.get_dist() << endl;
 
-	cout << "\nРасстояние между двумя точками: \n\n";
-	cout << "Введите координаты первой точки: "; cin >> A_x; cin >> A_y;
+
+	Point B;
 	double B_x, B_y;
 	cout << "Введите координаты второй точки: "; cin >> B_x; cin >> B_y;
-	cout << "\n\n Расстояние между точками равно: " << Distance(A_x, A_y, B_x, B_y)<<endl;
+	B.set_x(B_x);
+	B.set_y(B_y);
+	cout << "\n\n Расстояние между точками равно: " << A.distance(B)<<endl;
+
+
+	
+	cout << "\nРасстояние между двумя точками: \n\n";
+	cout << "Введите координаты первой точки: "; cin >> A_x; cin >> A_y;
+	
+	cout << "Введите координаты второй точки: "; cin >> B_x; cin >> B_y;
+	cout << "\n\n Расстояние между точками равно: " << Distance(A, B) << endl;
+	A.distance(B);
 }
 
-double Distance(double x1, double y1, double x2, double y2)
-{
-	double dist, x, y;
-	x = x2 - x1;
-	y = y2 - y1;
-	dist = sqrt(pow(x, 2) + pow(y, 2));
-	return dist;
-}
+

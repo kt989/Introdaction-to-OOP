@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Introdaction to OOP", "Intr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Homework 12.11.22", "Homework 12.11.22\Homework 12.11.22.vcxproj", "{90CA78AE-A1F8-43B3-BBA5-67616F4958CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fruction", "Fruction\Fruction.vcxproj", "{43ECA1A3-D296-4E40-A462-E13799428283}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{90CA78AE-A1F8-43B3-BBA5-67616F4958CF}.Release|x64.Build.0 = Release|x64
 		{90CA78AE-A1F8-43B3-BBA5-67616F4958CF}.Release|x86.ActiveCfg = Release|Win32
 		{90CA78AE-A1F8-43B3-BBA5-67616F4958CF}.Release|x86.Build.0 = Release|Win32
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Debug|x64.ActiveCfg = Debug|x64
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Debug|x64.Build.0 = Debug|x64
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Debug|x86.ActiveCfg = Debug|Win32
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Debug|x86.Build.0 = Debug|Win32
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Release|x64.ActiveCfg = Release|x64
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Release|x64.Build.0 = Release|x64
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Release|x86.ActiveCfg = Release|Win32
+		{43ECA1A3-D296-4E40-A462-E13799428283}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
