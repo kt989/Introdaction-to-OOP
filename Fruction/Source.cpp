@@ -1,21 +1,23 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 #define WIDTH 26
 //#define CONSTRUCTORS_CHECK
-//#define ARIFMETICAL_OPERATORS_CHECK
+#define ARIFMETICAL_OPERATORS_CHECK
 //#define INCREMENT_CHECK
-#define COMPARISON_OPERATORS_CHECK
+//#define COMPARISON_OPERATORS_CHECK
 
 class Fraction;
 Fraction operator*(Fraction left, Fraction right);
 Fraction operator/ (const Fraction& left, const Fraction& right);
+Fraction operator+ (Fraction left, Fraction right);
+Fraction operator- (Fraction left, Fraction right);
 
 class Fraction
 {
-	int integer; //öåëàÿ ÷àñòü
-	int numerator;//÷èñëèòåëü
-	int denominator;//çíàìåíàòåëü
+	int integer; //Ñ†ÐµÐ»Ð°Ñ Ñ‡Ð°ÑÑ‚ÑŒ
+	int numerator;//Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ
+	int denominator;//Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ
 public:
 	int get_integer() const
 	{
@@ -112,6 +114,14 @@ public:
 	{
 		return *this = *this / other;
 	}
+	Fraction& operator+= (const Fraction& other)
+	{
+		return *this = *this + other;
+	}
+	Fraction& operator-= (const Fraction& other)
+	{
+		return *this = *this - other;
+	}
 
 	//            Increment/Decrement
 	Fraction& operator++() //prefix increment
@@ -143,22 +153,22 @@ public:
 
 	// Methods
 
-	Fraction& to_proper() //Ïðåîáðàçóåò äðîáü â ïðàâèëüíóþ
+	Fraction& to_proper() //ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·ÑƒÐµÑ‚ Ð´Ñ€Ð¾Ð±ÑŒ Ð² Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½ÑƒÑŽ
 	{
-		//Ïðåîáðàçóåò äðîáü â ïðàâèëüíóþ
+		//ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·ÑƒÐµÑ‚ Ð´Ñ€Ð¾Ð±ÑŒ Ð² Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½ÑƒÑŽ
 			integer += numerator / denominator;
 			numerator %= denominator;
 			return *this;
 	}
 
-	Fraction& to_improper() //Ïðåîáðàçóåò äðîáü â íåïðàâèëüíóþ
+	Fraction& to_improper() //ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·ÑƒÐµÑ‚ Ð´Ñ€Ð¾Ð±ÑŒ Ð² Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½ÑƒÑŽ
 	{
 		numerator += integer * denominator;
 		integer = 0;
 		return *this;
 	}
 
-	Fraction inverted() const //Ïåðåâîðà÷èâàåò äðîáü
+	Fraction inverted() const //ÐŸÐµÑ€ÐµÐ²Ð¾Ñ€Ð°Ñ‡Ð¸Ð²Ð°ÐµÑ‚ Ð´Ñ€Ð¾Ð±ÑŒ
 	{
 		Fraction inverted = *this;
 		inverted.to_improper();
@@ -292,24 +302,39 @@ bool operator> (Fraction left, Fraction right)
 bool operator< (Fraction left, Fraction right)
 {
 
-	return left.get_numerator() * right.get_denominator() >
+	return left.get_numerator() * right.get_denominator() <
 		left.get_denominator() * right.get_numerator();
 }
 
-bool operator>= (Fraction left, Fraction right)
+bool operator>= (const Fraction& left, const Fraction& right)
 {
 
-	return ((left.get_numerator() * right.get_denominator() >
+	/*return ((left.get_numerator() * right.get_denominator() >
 		left.get_denominator() * right.get_numerator()) || (left.get_numerator() * right.get_denominator() ==
-		left.get_denominator() * right.get_numerator()));
+		left.get_denominator() * right.get_numerator()));*/
+	return left > right || left == right;
 }
 
-bool operator<= (Fraction left, Fraction right)
+bool operator<= (const Fraction& left, const Fraction& right)
 {
 
-	return ((left.get_numerator() * right.get_denominator() <
+	/*return ((left.get_numerator() * right.get_denominator() <
 		left.get_denominator() * right.get_numerator()) || (left.get_numerator() * right.get_denominator() ==
-			left.get_denominator() * right.get_numerator()));
+			left.get_denominator() * right.get_numerator()));*/
+	return !(left > right);
+}
+
+std::ostream& operator<<(std::ostream& os, Fraction obj)
+{
+	if (obj.get_integer()) os << obj.get_integer();
+	if (obj.get_numerator())
+	{
+		if (obj.get_numerator()) os << "(";
+		os << obj.get_numerator() << "/" << obj.get_denominator();
+		if (obj.get_denominator()) os << ")";
+
+	}
+	return os;
 }
 
 void main()
@@ -372,14 +397,22 @@ void main()
 	C = A - B;
 	C.print();
 
-	cout << "A *= B;" << endl;
+	cout << "A += B;" << endl;
+	A += B;
+	A.print();
+
+	cout << "A -= B;" << endl;
+	A -= B;
+	A.print();
+
+	/*cout << "A *= B;" << endl;
 	A *= B;
 	A.print();
 
 	cout << "A /= B;" << endl;
 
 	A /= B;
-	A.print();
+	A.print();*/
 
 
 #endif // ARIFMETICAL_OPERATORS_CHECK
@@ -401,5 +434,8 @@ void main()
 #ifdef COMPARISON_OPERATORS_CHECK
 	cout << (Fraction(1, 4) > Fraction(1, 2)) << endl;
 #endif // COMPARISON_OPERATORS_CHECK
+
+//	Fraction A(2, 3, 4);
+//	cout << A<< endl<<endl;
 
 } 
