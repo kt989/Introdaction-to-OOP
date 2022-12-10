@@ -1,11 +1,18 @@
-﻿#include <iostream>
+﻿//Fraction
+#include <iostream>
 using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 #define WIDTH 26
 //#define CONSTRUCTORS_CHECK
-#define ARIFMETICAL_OPERATORS_CHECK
+//#define ARIFMETICAL_OPERATORS_CHECK
 //#define INCREMENT_CHECK
 //#define COMPARISON_OPERATORS_CHECK
+//#define CONVERTION_FROM_CLASS_TO_OTHER
+//#define HOMEWORK_1
+#define HOMEWORK_2
 
 class Fraction;
 Fraction operator*(Fraction left, Fraction right);
@@ -61,6 +68,33 @@ public:
 		cout.width(WIDTH);
 		cout << std::left<<"SinglArgumentConstructor:" << this << endl;
 	}
+
+	Fraction(double other)
+	{
+		this->integer = int(other); 
+		//cout << this->integer << "     integer" << endl;
+		double buffer = other - this->integer;
+		//cout << buffer << "   buffer"<<endl;
+		int count = 1;
+		double buffer_check = buffer;
+		while ((buffer_check * 10 - (int)(buffer_check * 10)) != 0) //считаем сколько цифр после запятой
+		{
+			count++;
+			if ((buffer_check * 10 - (int)(buffer_check*10)) != 0)
+			{
+				buffer_check *= 10;
+			}
+			//cout << count << "     count" << endl;
+		}
+		this->numerator = buffer*pow(10, count);
+		//cout << this->numerator << "     numerator" << endl;
+		this->denominator = pow(10, count);
+		//cout << this->denominator << "     denominator" << endl;
+		reduce();
+		cout.width(WIDTH);
+		cout << std::left << "SinglArgumentConstructor for double:" << this << endl;
+	}
+
 	Fraction(int numerator, int denominator)
 	{
 		this->integer = 0;
@@ -149,7 +183,16 @@ public:
 		integer--;
 		return old;
 	}
+	// Type-cast operators
+	explicit operator int() 
+	{
+		return  to_proper().integer;
+	}
 
+	explicit operator double() const
+	{
+		return integer+(double)numerator/denominator;
+	}
 
 	// Methods
 
@@ -179,7 +222,7 @@ public:
 		return inverted;
 	}
 
-	Fraction& reduce()
+	Fraction& reduce() //сокращает дробь
 	{
 		int more, less, rest;
 		if (numerator > denominator)
@@ -337,6 +380,22 @@ std::ostream& operator<<(std::ostream& os, Fraction obj)
 	return os;
 }
 
+std::istream& operator>>(std::istream& os, Fraction& obj)
+{
+	int buffer;
+	os >> buffer;
+	obj.set_integer(buffer);
+	//cout << obj.get_integer() << "   integer" << endl;
+	os >> buffer;
+	obj.set_numerator(buffer);
+	//cout << obj.get_numerator() << "   numerator" << endl;
+	os >> buffer;
+	if (buffer == 0) obj.set_denominator(buffer+1);
+	else obj.set_denominator(buffer);
+	//cout << obj.get_denominator() << "   denominator" << endl;
+	return os;
+}
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -435,7 +494,30 @@ void main()
 	cout << (Fraction(1, 4) > Fraction(1, 2)) << endl;
 #endif // COMPARISON_OPERATORS_CHECK
 
-//	Fraction A(2, 3, 4);
-//	cout << A<< endl<<endl;
+#ifdef HOMEWORK_1
+	Fraction A(2, 3, 4);
+	cout << A << endl;
+	cout << "Введите дробь в формате: целая_часть числитель знаменатель" << endl;
+	Fraction B, C;
+	cin >> B; /// НЕ ВЫВОДИТ НИЧЕГО!!!!!!!
+	cout << B << endl;
+
+#endif // HOMEWORK_1
+
+
+#ifdef HOMEWORK_2
+	Fraction B = 2.75;
+	cout << B << endl;
+#endif // HOMEWORK_2
+
+#ifdef CONVERTION_FROM_CLASS_TO_OTHER
+	Fraction A(5);
+	int a = (int)A;
+	cout << a << endl;
+
+	Fraction B(2, 3, 4);
+	double b = (double)B;
+	cout << b << endl;
+#endif // CONVERTION_FROM_CLASS_TO_OTHER
 
 } 
