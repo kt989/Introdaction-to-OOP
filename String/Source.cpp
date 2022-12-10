@@ -147,6 +147,7 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 }
 
 //#define CONSTRUCTORS_CHECK
+//#define OPERATOR_PLUS_CHECK
 
 void main()
 {
@@ -170,6 +171,7 @@ void main()
 #endif // CONSTRUCTORS_CHECK
 
 
+#ifdef OPERATOR_PLUS_CHECK
 	String str1 = "Hello";
 	cout << str1 << endl;
 	String str2 = "World";
@@ -179,4 +181,8 @@ void main()
 	str3 = str1 + str2;
 	cout << DELIMITER << endl;
 	str3.print();
+#endif // OPERATOR_PLUS_CHECK
+
+
+
 }

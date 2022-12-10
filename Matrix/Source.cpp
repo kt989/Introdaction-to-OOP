@@ -32,6 +32,14 @@ public:
 	{
 		this->rows = rows;
 	}
+	const int** get_array() const
+	{
+		return array;
+	}
+    int** get_array() 
+	{
+		return array;
+	}
 	//Constructors
 	Matrix() //DefaultConstructor
 	{
@@ -127,7 +135,7 @@ Matrix operator+ (Matrix left, Matrix right)
 	{
 		for (int j = 0; j < left.get_cols(); j++)
 		{
-			res[i][j] = left[i][j] + right[i][j];
+			res[i][j] = left.get_array()[i][j] + right.get_array()[i][j];
 		}
 	}
 	return res;
