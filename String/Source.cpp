@@ -29,40 +29,31 @@ public:
 	}
 
 	//Constructors
-	explicit String(size_t size = 80)
+	explicit String(size_t size = 80): size(size), str (new char[size] {})
 	{
-		this->size = size;
-		this->str = new char[size]{};
 		cout.width(WIDTH);
 		cout << std::left << "DeafaultConstructor" << this<<endl;
 	}
 
-	String(const char* str)
+	String(const char* str): size(strlen(str)+1), str(new char[size] {})
 	{
-		this->size = strlen(str)+1;
-		this->str = new char[size] {};
-		strcpy(this->str, str); //strcpy - string copy: strcpy (dst, src
+				strcpy(this->str, str); //strcpy - string copy: strcpy (dst, src
         //dst - destination string (строка В которую копируем - строка получатель)
 		//src - source string (строка-источник - строка ИЗ которой еопируем)
 		cout.width(WIDTH);
 		cout << std::left << "Constructor" << this << endl;
-
 	}
 
-	String(const String& other)
+	String(const String& other):size (other.size), str (new char[size] {})
 	{
-		this->size = other.size;
-		this->str = new char[size] {};
 		strcpy(this->str, other.str);
 		cout.width(WIDTH);
 		cout << std::left << "CopyConstructor" << this << endl;
 	}
 
-	String(String&& other)
+	String(String&& other): size (other.size), str (other.str)
 	{
 		if (this == &other) return;
-		this->size = other.size;
-		this->str = other.str;
 		other.size = 0;
 		other.str = nullptr;
 		cout.width(WIDTH);
@@ -147,7 +138,7 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 }
 
 //#define CONSTRUCTORS_CHECK
-//#define OPERATOR_PLUS_CHECK
+#define OPERATOR_PLUS_CHECK
 
 void main()
 {
