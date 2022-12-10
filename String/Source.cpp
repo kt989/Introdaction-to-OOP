@@ -35,7 +35,7 @@ public:
 		cout << std::left << "DeafaultConstructor" << this<<endl;
 	}
 
-	String(const char* str): size(strlen(str)+1), str(new char[size] {})
+	String(const char* str): String(strlen(str)+1)
 	{
 				strcpy(this->str, str); //strcpy - string copy: strcpy (dst, src
         //dst - destination string (строка ¬ которую копируем - строка получатель)
@@ -44,14 +44,14 @@ public:
 		cout << std::left << "Constructor" << this << endl;
 	}
 
-	String(const String& other):size (other.size), str (new char[size] {})
+	String(const String& other):String(other.str)
 	{
 		strcpy(this->str, other.str);
 		cout.width(WIDTH);
 		cout << std::left << "CopyConstructor" << this << endl;
 	}
 
-	String(String&& other): size (other.size), str (other.str)
+	String(String&& other): size(other.size), str(other.str)
 	{
 		if (this == &other) return;
 		other.size = 0;
